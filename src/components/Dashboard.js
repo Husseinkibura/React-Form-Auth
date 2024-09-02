@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { FaUsers, FaChartLine, FaCog, FaFileAlt, FaShoppingCart, FaEye, FaEdit, FaSync, FaTrash, FaUserCircle, FaBars } from "react-icons/fa";
-import { Pie } from "react-chartjs-2";
-import { Bar } from "react-chartjs-2";
+import { FaUsers, FaChartLine, FaCog, FaFileAlt, FaShoppingCart, FaUserCircle } from "react-icons/fa";
+import { Pie, Bar } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js';
 
 // Register Chart.js components
@@ -269,87 +268,58 @@ const Dashboard = () => {
       <div style={{ ...styles.sidebar, ...(sidebarCollapsed ? styles.sidebarCollapsed : {}) }}>
         {!sidebarCollapsed && <h2 style={styles.sidebarTitle}>Dashboard</h2>}
         <ul style={styles.navList}>
-        <li style={{ ...styles.navItem, ...(sidebarCollapsed ? styles.navItemCollapsed : {}) }}>
+          <li style={{ ...styles.navItem, ...(sidebarCollapsed ? styles.navItemCollapsed : {}) }}>
             <FaUsers style={{ ...styles.icon, ...(sidebarCollapsed ? styles.iconCollapsed : {}) }} />
             {!sidebarCollapsed && <span style={styles.navText}>Dashboard</span>}
           </li>
           <li style={{ ...styles.navItem, ...(sidebarCollapsed ? styles.navItemCollapsed : {}) }}>
-            <FaUsers style={{ ...styles.icon, ...(sidebarCollapsed ? styles.iconCollapsed : {}) }} />
-            {!sidebarCollapsed && <span style={styles.navText}>Customer</span>}
-          </li>
-          <li style={{ ...styles.navItem, ...(sidebarCollapsed ? styles.navItemCollapsed : {}) }}>
             <FaShoppingCart style={{ ...styles.icon, ...(sidebarCollapsed ? styles.iconCollapsed : {}) }} />
-            {!sidebarCollapsed && <span style={styles.navText}>Supplier</span>}
+            {!sidebarCollapsed && <span style={styles.navText}>Orders</span>}
           </li>
           <li style={{ ...styles.navItem, ...(sidebarCollapsed ? styles.navItemCollapsed : {}) }}>
             <FaChartLine style={{ ...styles.icon, ...(sidebarCollapsed ? styles.iconCollapsed : {}) }} />
-            {!sidebarCollapsed && <span style={styles.navText}>Category</span>}
-            
+            {!sidebarCollapsed && <span style={styles.navText}>Analytics</span>}
           </li>
           <li style={{ ...styles.navItem, ...(sidebarCollapsed ? styles.navItemCollapsed : {}) }}>
             <FaFileAlt style={{ ...styles.icon, ...(sidebarCollapsed ? styles.iconCollapsed : {}) }} />
-            {!sidebarCollapsed && <span style={styles.navText}>Stock</span>}
+            {!sidebarCollapsed && <span style={styles.navText}>Reports</span>}
           </li>
           <li style={{ ...styles.navItem, ...(sidebarCollapsed ? styles.navItemCollapsed : {}) }}>
             <FaCog style={{ ...styles.icon, ...(sidebarCollapsed ? styles.iconCollapsed : {}) }} />
-            {!sidebarCollapsed && <span style={styles.navText}>Sales</span>}
-          </li>
-          <li style={{ ...styles.navItem, ...(sidebarCollapsed ? styles.navItemCollapsed : {}) }}>
-            <FaUsers style={{ ...styles.icon, ...(sidebarCollapsed ? styles.iconCollapsed : {}) }} />
-            {!sidebarCollapsed && <span style={styles.navText}>Expense</span>}
+            {!sidebarCollapsed && <span style={styles.navText}>Settings</span>}
           </li>
         </ul>
+        <button onClick={toggleSidebar}>Toggle Sidebar</button>
       </div>
       <div style={{ ...styles.mainContent, ...(sidebarCollapsed ? styles.mainContentCollapsed : {}) }}>
         <div style={{ ...styles.navbar, ...(sidebarCollapsed ? styles.navbarCollapsed : {}) }}>
-          <button 
-            onClick={toggleSidebar} 
-            style={{ 
-              background: 'none', 
-              border: 'none', 
-              color: '#fff', 
-              cursor: 'pointer', 
-              padding: '0',
-              width: '60px', // Matches width of sidebar and navbar
-              height: '60px', // Matches height of sidebar and navbar
-            }}
-          >
-            <FaBars style={styles.profileIcon} />
-          </button>
           <h1 style={styles.navbarH1}>Dashboard</h1>
           <div style={styles.navbarMenu}>
             <input type="text" placeholder="Search..." style={styles.navbarInput} />
-            <label htmlFor="profile-image-upload">
-              <FaUserCircle style={styles.profileIcon} />
-              <input
-                type="file"
-                id="profile-image-upload"
-                accept="image/*"
-                style={styles.profileImageInput}
-                onChange={handleProfileImageChange}
-              />
-            </label>
-            {profileImage && <img src={profileImage} alt="Profile" style={{ ...styles.profileIcon, borderRadius: '50%' }} />}
+            <div style={styles.profileIcon} onClick={() => document.getElementById('profileImageInput').click()}>
+              {profileImage ? <img src={profileImage} alt="Profile" style={{ borderRadius: '50%', width: '40px', height: '40px' }} /> : <FaUserCircle />}
+              <input id="profileImageInput" type="file" accept="image/*" onChange={handleProfileImageChange} style={styles.profileImageInput} />
+            </div>
           </div>
         </div>
         <div style={styles.dashboard}>
           <div style={styles.cards}>
-            <div style={{ ...styles.card, backgroundColor: '#2196f3' }}>
+            <div style={{ ...styles.card, backgroundColor: '#2196f3' }} className="cardHover">
               <FaUsers style={styles.cardIcon} />
               <h3 style={styles.cardH3}>Users</h3>
               <p style={styles.cardP}>1,234</p>
             </div>
-            <div style={{ ...styles.card, backgroundColor: '#4caf50' }}>
+            <div style={{ ...styles.card, backgroundColor: '#4caf50' }} className="cardHover">
               <FaShoppingCart style={styles.cardIcon} />
               <h3 style={styles.cardH3}>Orders</h3>
               <p style={styles.cardP}>567</p>
             </div>
-            <div style={{ ...styles.card, backgroundColor: '#ff9800' }}>
+            <div style={{ ...styles.card, backgroundColor: '#ff9800' }} className="cardHover">
               <FaChartLine style={styles.cardIcon} />
               <h3 style={styles.cardH3}>Revenue</h3>
               <p style={styles.cardP}>$9,876</p>
             </div>
-            <div style={{ ...styles.card, backgroundColor: '#00bcd4' }}>
+            <div style={{ ...styles.card, backgroundColor: '#00bcd4' }} className="cardHover">
               <FaFileAlt style={styles.cardIcon} />
               <h3 style={styles.cardH3}>Reports</h3>
               <p style={styles.cardP}>123</p>
@@ -357,12 +327,10 @@ const Dashboard = () => {
           </div>
           <div style={styles.chartContainer}>
             <div style={styles.chart}>
-              <h4>Pie Chart 1</h4>
-              <Pie data={data1} height={100} width={50} /> {/* Adjust height and width */}
+              <Pie data={data1} />
             </div>
             <div style={styles.chart}>
-              <h4>Bar Chart 2</h4>
-              <Bar data={data2} height={100} width={50} /> {/* Adjust height and width */}
+              <Bar data={data2} />
             </div>
           </div>
           <div style={styles.tableContainer}>
@@ -385,21 +353,13 @@ const Dashboard = () => {
                   <td style={styles.tbodyTd}>Admin</td>
                   <td style={styles.tbodyTd}>Active</td>
                   <td style={styles.tbodyTd}>
-                    <button style={{ ...styles.button, ...styles.viewButton }}>
-                      <FaEye />
-                    </button>
-                    <button style={{ ...styles.button, ...styles.editButton }}>
-                      <FaEdit />
-                    </button>
-                    <button style={{ ...styles.button, ...styles.updateButton }}>
-                      <FaSync />
-                    </button>
-                    <button style={{ ...styles.button, ...styles.deleteButton }}>
-                      <FaTrash />
-                    </button>
+                    <button style={{ ...styles.button, ...styles.viewButton }}>View</button>
+                    <button style={{ ...styles.button, ...styles.editButton }}>Edit</button>
+                    <button style={{ ...styles.button, ...styles.updateButton }}>Update</button>
+                    <button style={{ ...styles.button, ...styles.deleteButton }}>Delete</button>
                   </td>
                 </tr>
-                {/* Add more rows as needed */}
+                {/* Repeat similar <tr> for other table rows */}
               </tbody>
             </table>
           </div>

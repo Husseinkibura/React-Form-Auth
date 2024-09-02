@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { TextField, Button, Grid, Box, Typography, Container, Link } from '@mui/material';
 
 const SignUp = () => {
   const [firstName, setFirstName] = useState('');
@@ -35,62 +36,112 @@ const SignUp = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h3>Sign Up</h3>
-      <div className="mb-3">
-        <label>First name</label>
-        <input
-          type="text"
-          className="form-control"
-          placeholder="First name"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-          required
-        />
-      </div>
-      <div className="mb-3">
-        <label>Last name</label>
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Last name"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-          required
-        />
-      </div>
-      <div className="mb-3">
-        <label>Email address</label>
-        <input
-          type="email"
-          className="form-control"
-          placeholder="Enter email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </div>
-      <div className="mb-3">
-        <label>Password</label>
-        <input
-          type="password"
-          className="form-control"
-          placeholder="Enter password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </div>
-      <div className="d-grid">
-        <button type="submit" className="btn btn-primary">
+    <Container component="main" maxWidth="xs">
+      <Box
+        sx={{
+          marginTop: 8,
+          padding: 4,
+          border: '1px solid #ddd', // Border around the form
+          borderRadius: '8px', // Rounded corners
+          boxShadow: 3, // Shadow effect for depth
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          backgroundColor: '#fff', // Background color of the form
+        }}
+      >
+        <Typography component="h1" variant="h5" sx={{ mb: 3 }}>
           Sign Up
-        </button>
-      </div>
-      <p className="forgot-password text-right">
-        Already registered <a href="/sign-in">sign in?</a>
-      </p>
+        </Typography>
+        <Box component="form" onSubmit={handleSubmit} sx={{ width: '100%' }}>
+          <Grid container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                autoComplete="given-name"
+                name="firstName"
+                required
+                fullWidth
+                id="firstName"
+                label="First Name"
+                autoFocus
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                helperText="Enter your first name"
+                sx={{ border: '1px solid #ddd', borderRadius: '4px' }} // Border for input fields
+              />
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <TextField
+                required
+                fullWidth
+                id="lastName"
+                label="Last Name"
+                name="lastName"
+                autoComplete="family-name"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                helperText="Enter your last name"
+                sx={{ border: '1px solid #ddd', borderRadius: '4px' }} // Border for input fields
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                helperText="Enter a valid email address"
+                sx={{ border: '1px solid #ddd', borderRadius: '4px' }} // Border for input fields
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="new-password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                helperText="Enter a strong password"
+                sx={{ border: '1px solid #ddd', borderRadius: '4px' }} // Border for input fields
+              />
+            </Grid>
+          </Grid>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            sx={{
+              mt: 3,
+              mb: 2,
+              '&:hover': {
+                backgroundColor: 'primary.dark',
+              },
+              borderRadius: '4px', // Rounded corners for the button
+              border: '1px solid transparent', // Border for button
+            }}
+          >
+            Sign Up
+          </Button>
+          <Grid container justifyContent="flex-end">
+            <Grid item>
+              <Link href="/sign-in" variant="body2">
+                Already have an account? Sign In
+              </Link>
+            </Grid>
+          </Grid>
+        </Box>
+      </Box>
       <ToastContainer position="top-right" />
-    </form>
+    </Container>
   );
 };
 
