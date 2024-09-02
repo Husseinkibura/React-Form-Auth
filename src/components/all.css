@@ -1,0 +1,100 @@
+/* src/components/Sidebar.css */
+.sidebar {
+    background: #333;
+    color: #fff;
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 20px;
+  }
+  
+  .sidebar h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .sidebar nav ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .sidebar nav ul li {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    cursor: pointer;
+  }
+  
+  .sidebar nav ul li:hover {
+    background: #444;
+  }
+  
+  .sidebar .icon {
+    font-size: 20px;
+    margin-right: 10px;
+  }
+
+  
+  /* src/components/Navbar.css */
+.navbar {
+    background: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 250px; /* Match the width of the sidebar */
+    right: 0;
+    height: 60px;
+  }
+  
+  .navbar h1 {
+    font-size: 20px;
+    margin: 0;
+  }
+  
+  .navbar-menu {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-menu input {
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+  }
+  
+
+  /* Login.css */
+.form-container {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+  }
+  
+  .form-title {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .input-field {
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .submit-button {
+    padding: 10px 20px;
+    border-radius: 5px;
+  }
+  
+  .forgot-password {
+    margin-top: 10px;
+    text-align: right;
+  }
+  
